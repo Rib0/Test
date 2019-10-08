@@ -7,34 +7,22 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const SvgStore = require('webpack-svgstore-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
-/*
-  make hot reload
-  svg loader
-*/
-
 const isProd = process.env.NODE_ENV === 'production';
 
 const config = {
-  entry: [
-    './src/javascript',
-    './src/scss'
-  ],
+  entry: ['./src/js'],
   output: {
     path: path.resolve(__dirname, 'build/'),
     filename: !isProd ? '[name].js' : '[name].[hash].js',
   },
-  devtool: isProd && 'cheap-module-source-map', // generate source map
+  devtool: isProd && 'cheap-module-source-map',
   devServer: {
     compress: true,
     overlay: true,
-    historyApiFallback: true, // necessary for spa, fallback on index.html if 404 error
-    port: 8000,
+    historyApiFallback: true,
+    port: 8080,
     hot: true,
-    // open: true, // devserver open default broswer
-    open: 'chrome', // only for windows os
-    proxy: {
-      '/api': 'http://localhost:8080' // useful if api url should redirect to http://localhost:8080/api
-    },
+    open: true,
     contentBase: path.resolve(__dirname, 'build/'),
   },
   optimization: {
@@ -58,24 +46,23 @@ const config = {
         loader: 'babel-loader',
       },
       {
-        test: /\.(css|scss)$/,
+        test: /\.(css)$/,
         use: [
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
-              // modules: true,
-              // localIdentName: '[path][name]__[local]--[hash:base64:5]',
-              importLoaders: 2, // applied postcss-loader and sass-loader before css-loader (applied 2 loaders for css styles)
+              modules: true,
+              localIdentName: '[path][name]__[local]--[hash:base64:5]',
+              importLoaders: 1,
             },
           },
           'postcss-loader',
-          'sass-loader',
         ],
       },
       {
           loader: 'file-loader',
-          exclude: /\.(js|css|scss|html|svg)/,
+          exclude: /\.(js|css|html|svg)/,
           options: { 
               name: 'images/[name].[ext]' 
           },
@@ -83,8 +70,8 @@ const config = {
     ],
   },
   resolve: {
-    extensions: ['.scss', '.js'], // allow not to specify extension of .scss and .js
-    modules: ['node_modules', path.resolve(__dirname, 'src')], // search for imported files in this directories
+    extensions: ['.js'],
+    modules: ['node_modules', path.resolve(__dirname, 'src/js')],
     alias: {
       images: path.resolve(__dirname, 'src/images/')
     }
@@ -94,12 +81,9 @@ const config = {
     children: false,
     colors: true,
     hash: false,
-    publicPath: false // console stats info
+    publicPath: false
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) // var is working in code in development and production mode
-    }),
     new MiniCssExtractPlugin({
       filename: !isProd ? '[name].css' : '[name].[hash].css',
     }),
@@ -109,7 +93,6 @@ const config = {
       template: './index.html', // entry template
       filename: 'index.html', // output template
     }),
-    !isProd && new webpack.HotModuleReplacementPlugin(),
     isProd && new CleanWebpackPlugin({
       cleanStaleWebpackAssets: false,
     }),
