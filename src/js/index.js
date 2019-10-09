@@ -6,8 +6,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
+import './polyfills';
 import reducer from 'store/reducers';
-import App from './App';
+import App from 'components';
 
 const store = createStore(reducer, applyMiddleware(logger, thunk));
 
