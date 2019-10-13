@@ -9,7 +9,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const isProd = process.env.NODE_ENV === 'production';
 
 const config = {
-    entry: ['./src/js'],
+    entry: ['./src/js', './src/index.css'],
     output: {
         path: path.resolve(__dirname, 'build/'),
         filename: !isProd ? '[name].js' : '[name].[hash].js',
@@ -20,7 +20,6 @@ const config = {
         overlay: true,
         historyApiFallback: true,
         port: 8080,
-        hot: true,
         open: true,
         contentBase: path.resolve(__dirname, 'build/'),
     },
@@ -51,8 +50,9 @@ const config = {
                     {
                         loader: 'css-loader',
                         options: {
-                            modules: true,
-                            localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                            modules: {
+                                localIdentName: '[name]__[local]--[hash:base64:5]',
+                            },
                             importLoaders: 1,
                         },
                     },
@@ -72,8 +72,8 @@ const config = {
         extensions: ['.js'],
         modules: ['node_modules', path.resolve(__dirname, 'src/js')],
         alias: {
-            images: path.resolve(__dirname, 'src/images/'),
-            svg: path.resolve(__dirname, 'src/svg/'),
+            Images: path.resolve(__dirname, 'src/img/'),
+            Svg: path.resolve(__dirname, 'src/svg/'),
         },
     },
     stats: {
@@ -86,6 +86,7 @@ const config = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: !isProd ? '[name].css' : '[name].[hash].css',
+            hmr: !isProd,
         }),
         new HtmlWebpackPlugin({
             inject: false, // inject script at the bottom of the body

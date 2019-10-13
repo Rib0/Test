@@ -1,0 +1,27 @@
+.sidebar {
+    background-color: #002137;
+    padding-top: 15px;
+    font-size: 0.8rem;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 25px;
+}
+
+.item {
+    color: white;
+    padding: 14px 10px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+        background-color: #002c49;
+    }
+}
+
+.item__img {
+    margin-bottom: 10px;
+}

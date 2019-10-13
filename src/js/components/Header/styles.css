@@ -1,0 +1,16 @@
+.header {
+    background-color: #d1e0ed;
+    padding: 15px 0 10px 17px;
+}
+
+.input {
+    border-radius: 20px;
+    border: none;
+    padding: 11px 5px;
+    width: 680px;
+
+    &:focus {
+        border: 1px solid black;
+        outline-color: transparent;
+    }
+}

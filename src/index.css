@@ -1,0 +1,22 @@
+html {
+    font: 16px sans-serif;
+}
+
+body {
+    margin: 0;
+    padding-top: 50px;
+}
+
+ul, ol {
+    padding: 0;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, p {
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
