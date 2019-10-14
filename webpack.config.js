@@ -69,7 +69,7 @@ const config = {
         ],
     },
     resolve: {
-        extensions: ['.js'],
+        extensions: ['.js', 'json'],
         modules: ['node_modules', path.resolve(__dirname, 'src/js')],
         alias: {
             Images: path.resolve(__dirname, 'src/img/'),
