@@ -7,6 +7,7 @@ const SvgStore = require('webpack-svgstore-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 const isProd = process.env.NODE_ENV === 'production';
+console.log(isProd);
 
 const config = {
     entry: ['./src/js', './src/index.css'],
@@ -20,7 +21,7 @@ const config = {
         overlay: true,
         historyApiFallback: true,
         port: 8080,
-        open: true,
+        open: 'chrome',
         contentBase: path.resolve(__dirname, 'build/'),
     },
     optimization: {
@@ -46,7 +47,13 @@ const config = {
             {
                 test: /\.(css)$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            hmr: !isProd,
+                            reloadAll: true,
+                        },
+                    },
                     {
                         loader: 'css-loader',
                         options: {
@@ -86,13 +93,11 @@ const config = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: !isProd ? '[name].css' : '[name].[hash].css',
-            hmr: !isProd,
         }),
         new HtmlWebpackPlugin({
-            inject: false, // inject script at the bottom of the body
-            // hash: true, // add hash to files for hash busting
-            template: './index.html', // entry template
-            filename: 'index.html', // output template
+            inject: false,
+            template: './index.html',
+            filename: 'index.html',
         }),
         isProd &&
             new CleanWebpackPlugin({
