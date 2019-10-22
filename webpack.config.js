@@ -7,7 +7,6 @@ const SvgStore = require('webpack-svgstore-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 const isProd = process.env.NODE_ENV === 'production';
-console.log(isProd);
 
 const config = {
     entry: ['./src/js', './src/index.css'],
@@ -40,38 +39,36 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.(js)$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader',
-            },
-            {
-                test: /\.(css)$/,
-                use: [
+                oneOf: [
                     {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            hmr: !isProd,
-                            reloadAll: true,
-                        },
+                        test: /\.js$/,
+                        exclude: /node_modules/,
+                        loader: 'babel-loader',
                     },
                     {
-                        loader: 'css-loader',
-                        options: {
-                            modules: {
-                                localIdentName: '[name]__[local]--[hash:base64:5]',
+                        test: /\.css$/,
+                        use: [
+                            MiniCssExtractPlugin.loader,
+                            {
+                                loader: 'css-loader',
+                                options: {
+                                    modules: {
+                                        localIdentName: '[name]__[local]--[hash:base64:5]',
+                                    },
+                                    importLoaders: 3,
+                                },
                             },
-                            importLoaders: 1,
+                            'postcss-loader',
+                        ],
+                    },
+                    {
+                        loader: 'file-loader',
+                        exclude: /\.(js|css|html|svg)/,
+                        options: {
+                            name: 'images/[name].[ext]',
                         },
                     },
-                    'postcss-loader',
                 ],
-            },
-            {
-                loader: 'file-loader',
-                exclude: /\.(js|css|html|svg)/,
-                options: {
-                    name: 'images/[name].[ext]',
-                },
             },
         ],
     },
@@ -92,7 +89,8 @@ const config = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: !isProd ? '[name].css' : '[name].[hash].css',
+            filename: !isProd ? '[name].css' : '[name].[contenthash].css',
+            hmr: !isProd,
         }),
         new HtmlWebpackPlugin({
             inject: false,
@@ -105,7 +103,7 @@ const config = {
             }),
         new CopyPlugin([
             {
-                from: 'src/images',
+                from: 'src/img',
                 to: 'images',
                 force: true,
             },
