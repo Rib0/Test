@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 
 import styles from './styles.css';
 
@@ -37,18 +37,18 @@ const items = [
     },
 ];
 
-export default class Sidebar extends Component {
-    render() {
-        return (
-            <div className={styles.sidebar}>
-                <img className={styles.logo} src={Logo} />
-                {items.map(item => (
-                    <div className={styles.item}>
-                        <img className={styles.item__img} src={item.img} />
-                        <p>{item.name}</p>
-                    </div>
-                ))}
-            </div>
-        );
-    }
-}
+const Sidebar = () => {
+    return (
+        <div className={styles.sidebar}>
+            <img className={styles.logo} src={Logo} />
+            {items.map(item => (
+                <div className={styles.item}>
+                    <img className={styles.item__img} src={item.img} />
+                    <p>{item.name}</p>
+                </div>
+            ))}
+        </div>
+    );
+};
+
+export default Sidebar;

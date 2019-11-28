@@ -6,6 +6,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const SvgStore = require('webpack-svgstore-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
+//todo
+
 const isProd = process.env.NODE_ENV === 'production';
 
 const config = {
