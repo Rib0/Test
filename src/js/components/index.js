@@ -1,9 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Main from 'components/Main';
 
-export default class App extends Component {
-    render() {
-        return <Main />;
-    }
-}
+/*
+    todo
+
+    2. todo the same what in game
+    3. use all libraries with hooks
+    4. adaptive maket
+
+*/
+
+const App = () => {
+    return <Main />;
+};
+
+export default App;

@@ -11,6 +11,8 @@ import './polyfills';
 import reducer from 'store/reducers';
 import App from 'components';
 
+console.log(_API);
+
 const store = createStore(reducer, applyMiddleware(logger, thunk));
 
 render(

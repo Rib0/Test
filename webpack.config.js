@@ -1,12 +1,13 @@
+require('dotenv').config();
+
 const path = require('path');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const SvgStore = require('webpack-svgstore-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-
-//todo
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -27,13 +28,10 @@ const config = {
     },
     optimization: {
         minimizer: [
-            new UglifyJsPlugin({
-                cache: true,
+            new TerserPlugin({
                 parallel: true,
-                uglifyOptions: {
-                    output: {
-                        comments: false,
-                    },
+                terserOptions: {
+                    ecma: 6,
                 },
             }),
         ],
@@ -50,7 +48,12 @@ const config = {
                     {
                         test: /\.css$/,
                         use: [
-                            MiniCssExtractPlugin.loader,
+                            {
+                                loader: MiniCssExtractPlugin.loader,
+                                options: {
+                                    hmr: !isProd,
+                                },
+                            },
                             {
                                 loader: 'css-loader',
                                 options: {
@@ -89,10 +92,15 @@ const config = {
         hash: false,
         publicPath: false,
     },
+    node: {
+        fs: 'empty',
+    },
     plugins: [
         new MiniCssExtractPlugin({
             filename: !isProd ? '[name].css' : '[name].[contenthash].css',
-            hmr: !isProd,
+        }),
+        new webpack.DefinePlugin({
+            _API: JSON.stringify(process.env.API),
         }),
         new HtmlWebpackPlugin({
             inject: false,
