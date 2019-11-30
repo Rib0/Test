@@ -29,10 +29,15 @@ const config = {
     optimization: {
         minimizer: [
             new TerserPlugin({
-                parallel: true,
                 terserOptions: {
-                    ecma: 6,
+                    compress: {
+                        drop_console: true,
+                    },
+                    output: {
+                        comments: false,
+                    },
                 },
+                extractComments: false,
             }),
         ],
     },
@@ -78,11 +83,10 @@ const config = {
         ],
     },
     resolve: {
-        extensions: ['.js', 'json'],
+        extensions: ['.js', '.json'],
         modules: ['node_modules', path.resolve(__dirname, 'src/js')],
         alias: {
             Images: path.resolve(__dirname, 'src/img/'),
-            Svg: path.resolve(__dirname, 'src/svg/'),
         },
     },
     stats: {
@@ -111,18 +115,6 @@ const config = {
             new CleanWebpackPlugin({
                 cleanStaleWebpackAssets: false,
             }),
-        new CopyPlugin([
-            {
-                from: 'src/img',
-                to: 'images',
-                force: true,
-            },
-        ]),
-        new SvgStore({
-            svgoOptions: {
-                plugins: [{ removeTitle: true }],
-            },
-        }),
     ].filter(Boolean),
 };
 
