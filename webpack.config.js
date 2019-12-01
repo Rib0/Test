@@ -6,10 +6,18 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const SvgStore = require('webpack-svgstore-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
 
 const isProd = process.env.NODE_ENV === 'production';
+
+/*
+    add babel / and read about babel plugins
+    read about hot reload react
+    add code spliting 
+    add adaptive
+    eslint loader
+    webpack config
+    hot module replacement
+*/
 
 const config = {
     entry: ['./src/js', './src/index.css'],
@@ -21,6 +29,7 @@ const config = {
     devServer: {
         compress: true,
         overlay: true,
+        hot: true,
         historyApiFallback: true,
         port: 8080,
         open: 'chrome',
@@ -115,6 +124,7 @@ const config = {
             new CleanWebpackPlugin({
                 cleanStaleWebpackAssets: false,
             }),
+        !isProd && new webpack.HotModuleReplacementPlugin(),
     ].filter(Boolean),
 };
 

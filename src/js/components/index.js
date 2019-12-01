@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader/root';
 import React from 'react';
 
 import Main from 'components/Main';
@@ -15,4 +16,4 @@ const App = () => {
     return <Main />;
 };
 
-export default App;
+export default hot(App);
