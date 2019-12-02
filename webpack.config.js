@@ -17,6 +17,7 @@ const isProd = process.env.NODE_ENV === 'production';
     eslint loader
     webpack config
     hot module replacement
+    own browserlist
 */
 
 const config = {
