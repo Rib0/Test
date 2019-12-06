@@ -18,6 +18,9 @@ const isProd = process.env.NODE_ENV === 'production';
     webpack config
     hot module replacement
     own browserlist
+    react memo 
+    reselect
+    redux hooks
 */
 
 const config = {

@@ -3,13 +3,8 @@ module.exports = {
         es6: true,
         browser: true,
     },
-    extends: [
-        'airbnb',
-        'plugin:import/errors',
-        'plugin:import/warnings',
-        'plugin:jsx-a11y/recommended',
-    ],
-    plugins: ['babel', 'prettier'],
+    extends: ['airbnb', 'prettier', 'prettier/react'],
+    plugins: ['babel', 'react-hooks'],
     parser: 'babel-eslint',
     parserOptions: {
         ecmaVersion: 6,
@@ -19,6 +14,7 @@ module.exports = {
         },
     },
     rules: {
+        'react/jsx-filename-extension': 'off',
         'linebreak-style': 'off', // Неправильно работает в Windows.
         'jsx-a11y/anchor-is-valid': ['error', { components: ['Link'], specialLink: ['to'] }],
         'jsx-a11y/label-has-for': [
@@ -29,5 +25,12 @@ module.exports = {
                 },
             },
         ], // для ошибки вложенных свойств htmlFor элементов label
+    },
+    settings: {
+        'import/resolver': {
+            webpack: {
+                config: 'webpack.config.js',
+            },
+        },
     },
 };
