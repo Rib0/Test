@@ -10,17 +10,17 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const isProd = process.env.NODE_ENV === 'production';
 
 /*
-    add babel / and read about babel plugins
-    read about hot reload react
     add code spliting 
     add adaptive
-    eslint loader
     webpack config
     hot module replacement
     own browserlist
     react memo 
     reselect
-    redux hooks
+    add polyfill
+    const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+    const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const safePostCssParser = require('postcss-safe-parser');
 */
 
 const config = {
@@ -29,7 +29,7 @@ const config = {
         path: path.resolve(__dirname, 'build/'),
         filename: !isProd ? '[name].js' : '[name].[hash].js',
     },
-    devtool: isProd && 'cheap-module-source-map',
+    devtool: isProd && 'cheap-module-source-map', // read about
     devServer: {
         compress: true,
         overlay: true,
@@ -69,7 +69,7 @@ const config = {
                             {
                                 loader: MiniCssExtractPlugin.loader,
                                 options: {
-                                    hmr: !isProd,
+                                    hmr: !isProd, // read about
                                 },
                             },
                             {

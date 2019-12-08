@@ -4,7 +4,7 @@ module.exports = {
         browser: true,
     },
     extends: ['airbnb', 'prettier', 'prettier/react'],
-    plugins: ['babel', 'react-hooks'],
+    plugins: ['babel'],
     parser: 'babel-eslint',
     parserOptions: {
         ecmaVersion: 6,
