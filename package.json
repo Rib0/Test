@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV='development' webpack-dev-server --mode=development",
     "build": "cross-env NODE_ENV='production' webpack --mode=production",
-    "prettier": "prettier --write ./src/js/**/*.js"
+    "prettier": "prettier --write ./src/js/**/*.js",
+    "eslint": "eslint ./src/**"
   },
   "author": "Nikita Sidenko",
   "license": "ISC",
@@ -38,9 +39,11 @@
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "classnames": "^2.2.6",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.0.4",
+    "core-js": "^3.4.7",
     "css-loader": "^3.2.0",
     "cssnano": "^4.1.10",
     "dotenv": "^8.2.0",

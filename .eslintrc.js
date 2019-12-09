@@ -15,6 +15,8 @@ module.exports = {
     },
     rules: {
         'react/jsx-filename-extension': 'off',
+        'no-undef': 'off',
+        'import/prefer-default-export': 'off',
         'linebreak-style': 'off', // Неправильно работает в Windows.
         'jsx-a11y/anchor-is-valid': ['error', { components: ['Link'], specialLink: ['to'] }],
         'jsx-a11y/label-has-for': [

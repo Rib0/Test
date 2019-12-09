@@ -1,19 +1,30 @@
 import { hot } from 'react-hot-loader/root';
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Main from 'components/Main';
+import { getStatusesApi } from 'api';
 
-/*
-    todo
+class App extends Component {
+    componentDidMount() {
+        const { getStatuses } = this.props;
+        // getStatuses();
+    }
 
-    2. todo the same what in game
-    3. use all libraries with hooks
-    4. adaptive maket
+    render() {
+        return <Main />;
+    }
+}
 
-*/
-
-const App = () => {
-    return <Main />;
+const mapDispatchToProps = {
+    getStatuses: getStatusesApi,
 };
 
-export default hot(App);
+console.log(mapDispatchToProps);
+
+export default hot(
+    connect(
+        null,
+        mapDispatchToProps
+    )(App)
+);
