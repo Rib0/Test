@@ -1,12 +1,11 @@
-import { getPriorities, getStatuses } from 'store/actions';
+import { getStatements, getPriorities, getStatuses } from 'store/actions';
 import { request } from 'utils';
 
-console.log(_API_NK)
-
-export const getStatements = () => dispatch => {
+export const getStatementsApi = () => dispatch => {
     request({
         url: `${_API_NK}odata/tasks?tenantguid=${_KEY}`,
-    }).then(resp => resp.json()).then(console.log);
+    })
+        .then(({ value }) => dispatch(getStatements(value)));
 };
 
 export const getPrioritiesApi = () => dispatch => {
@@ -18,11 +17,9 @@ export const getStatusesApi = () => dispatch => {
 };
 
 export const getTagsApi = () => dispatch => {
-    request(`${_API}Tags`).then(() => dispatch(getStatuses(resp)))
-}
+    request(`${_API}Tags`).then(() => dispatch(getStatuses(resp)));
+};
 
 export const getServicesApi = () => dispatch => {
-    request(`${_API}Services`).then(resp => dispatch(getStatuses(resp)))
-}
-
-getStatements()()
+    request(`${_API}Services`).then(resp => dispatch(getStatuses(resp)));
+};

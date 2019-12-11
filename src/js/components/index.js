@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Main from 'components/Main';
-import { getStatusesApi } from 'api';
+import { getStatementsApi } from 'api';
 
 class App extends Component {
     componentDidMount() {
-        const { getStatuses } = this.props;
-        // getStatuses();
+        const { getStatementsApi } = this.props;
+        getStatementsApi();
     }
 
     render() {
@@ -17,10 +17,8 @@ class App extends Component {
 }
 
 const mapDispatchToProps = {
-    getStatuses: getStatusesApi,
+    getStatementsApi,
 };
-
-console.log(mapDispatchToProps);
 
 export default hot(
     connect(

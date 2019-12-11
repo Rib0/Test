@@ -1,37 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import classNames from 'classnames/bind';
+import PropTypes from 'prop-types';
 
 import Button from 'components/Button';
 
-import { items } from 'components/data/list.json';
 import Sidebar from 'components/Sidebar';
 import Container from 'components/Container';
+import TaskList from 'components/TaskList';
+import { changeCurrent } from 'store/actions';
 
 import close from 'Images/close.png';
 import styles from './styles.css';
 
-const Main = () => (
-    <Container>
+const cx = classNames.bind(styles);
+
+class Main extends Component {
+    
+    render () {
+    
+    return (
+        <Container>
         <Sidebar />
         <div className={styles.main}>
             <div className={styles.header}>
                 <input type="text" className={styles.input} />
             </div>
             <div className={styles.preview}>
-                <ul className={styles.list}>
-                    <li className={styles.list__header}>
-                        <Button className={styles.button} text="Создать заявку" />
-                        <div className={styles.names}>
-                            <span className={styles.id}>ID</span>
-                            <span className={styles.name}>Название</span>
-                        </div>
-                    </li>
-                    {items.map(item => (
-                        <li className={styles.list__item} key={item.id}>
-                            <span className={styles.id}>{item.id}</span>
-                            <span className={styles.name}>{item.name}</span>
-                        </li>
-                    ))}
-                </ul>
+                <TaskList {...this.props}  />
                 <div className={styles.content}>
                     <div className={styles.content__header}>
                         <span className={styles.content__headerNumber}>№ 67405</span>
@@ -109,6 +105,22 @@ const Main = () => (
             </div>
         </div>
     </Container>
-);
+    )}
+};
 
-export default Main;
+Main.PropTypes = {
+    tasks: PropTypes.arrayOf(PropTypes.object),
+    currentStatementId: PropTypes.number,
+    changeCurrent: PropTypes.func
+}
+
+const mapStateToProps = ({ statements: { items: tasks, currentStatementId } }) => ({
+    tasks,
+    currentStatementId
+})
+
+const mapDispatchToProps = {
+    changeCurrent
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

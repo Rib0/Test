@@ -13,13 +13,12 @@ const isProd = process.env.NODE_ENV === 'production';
     add code spliting 
     add adaptive
     webpack config
-    hot module replacement
     own browserlist
     react memo
     reselect
     const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
     const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const safePostCssParser = require('postcss-safe-parser');
+    const safePostCssParser = require('postcss-safe-parser');
 */
 
 const config = {
@@ -119,7 +118,7 @@ const config = {
             _API: JSON.stringify(process.env.API),
             _API_NK: JSON.stringify(process.env.API_NK),
             _ENV: JSON.stringify(process.env.NODE_ENV),
-            _KEY: JSON.stringify(process.env.KEY)
+            _KEY: JSON.stringify(process.env.KEY),
         }),
         new HtmlWebpackPlugin({
             inject: false,

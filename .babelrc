@@ -11,6 +11,12 @@
 				"loose": true 
 			}
 		],
+		[
+			"@babel/plugin-transform-spread",
+			{
+				"loose": true
+			}
+		],
 		["transform-react-remove-prop-types", {
 			"mode": "wrap",
 			"ignoreFilenames": ["node_modules"]

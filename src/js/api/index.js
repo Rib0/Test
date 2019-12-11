@@ -12,4 +12,4 @@
 //         .then(console.log);
 // };
 
-export { getStatusesApi } from './statements';
+export { getStatementsApi } from './statements';
