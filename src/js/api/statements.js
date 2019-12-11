@@ -4,8 +4,7 @@ import { request } from 'utils';
 export const getStatementsApi = () => dispatch => {
     request({
         url: `${_API_NK}odata/tasks?tenantguid=${_KEY}`,
-    })
-        .then(({ value }) => dispatch(getStatements(value)));
+    }).then(({ value }) => dispatch(getStatements(value)));
 };
 
 export const getPrioritiesApi = () => dispatch => {

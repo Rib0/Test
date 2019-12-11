@@ -9,22 +9,27 @@ import styles from './styles.css';
 const TaskList = ({ tasks, currentStatementId, changeCurrent }) => (
     <ul className={styles.list}>
         <li className={styles.list__header}>
-        <Button className={styles.button} text="Создать заявку" />
+            <Button className={styles.button} text="Создать заявку" />
             <div className={styles.names}>
                 <span className={styles.id}>ID</span>
                 <span className={styles.name}>Название</span>
             </div>
-                    </li>
-            {tasks.map(task => (
-                <Task key={task.id} {...task} currentStatementId={currentStatementId} onClick={changeCurrent} />
-            ))}
+        </li>
+        {tasks.map(task => (
+            <Task
+                key={task.id}
+                {...task}
+                currentStatementId={currentStatementId}
+                onClick={changeCurrent}
+            />
+        ))}
     </ul>
-)
+);
 
 TaskList.PropTypes = {
     tasks: PropTypes.arrayOf(PropTypes.object),
     currentStatementId: PropTypes.number,
-    changeCurrent: PropTypes.func
-}
+    changeCurrent: PropTypes.func,
+};
 
 export default TaskList;

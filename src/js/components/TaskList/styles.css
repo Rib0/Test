@@ -3,7 +3,8 @@
     border-bottom: 1px solid #d7dce0;
     cursor: pointer;
 
-    &:hover, &:active {
+    &:hover,
+    &:active {
         background-color: #ecf3f7;
     }
 
@@ -16,7 +17,7 @@
     flex: 0 0 35%;
     max-width: 35%;
     padding-top: 25px;
-    padding-right: .5px;
+    padding-right: 0.5px;
     list-style-type: none;
     border: 1px solid #d7dce0;
     border-left: none;
@@ -36,7 +37,7 @@
 }
 
 .names > span:first-child:after {
-    content: "";
+    content: '';
     position: absolute;
     right: 0;
     font-weight: normal;
@@ -49,7 +50,8 @@
     font-weight: bold;
 }
 
-.id, .name {
+.id,
+.name {
     display: inline-block;
     color: #66676c;
 }
