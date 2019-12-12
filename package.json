@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV='development' webpack-dev-server --mode=development",
     "build": "cross-env NODE_ENV='production' webpack --mode=production",
-    "prettier": "prettier --write ./src/js/**/*.js",
+    "prettier": "prettier --write ./src/js/**/**/**",
     "eslint": "eslint ./src/js/**"
   },
   "author": "Nikita Sidenko",

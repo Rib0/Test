@@ -16,11 +16,10 @@ const Task = ({ currentStatementId, id, onClick, name }) => {
         active: id === currentStatementId,
     });
 
-
     return (
         <li className={taskClassName} onClick={onSelect} role="menuitem" aria-hidden>
             <span className={styles.id}>{id}</span>
-            <span className={styles.name}>{name || "Без названия"}</span>
+            <span className={styles.name}>{name || 'Без названия'}</span>
         </li>
     );
 };
