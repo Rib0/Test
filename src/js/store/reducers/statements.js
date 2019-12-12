@@ -1,5 +1,5 @@
 const initialState = {
-    currentStatement: 0,
+    currentStatementId: 0,
     items: [],
 };
 
@@ -15,7 +15,7 @@ export default (state = initialState, { type, payload }) => {
                 items: state.items.map(item => (item.id === payload.id ? payload : item)),
             };
         case 'CHANGE_CURRENT':
-            return { ...state, currentStatement: payload };
+            return { ...state, currentStatementId: payload };
         case 'GET_STATUSES':
             return {
                 ...state,

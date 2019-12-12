@@ -10,17 +10,15 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const isProd = process.env.NODE_ENV === 'production';
 
 /*
-    add babel / and read about babel plugins
-    read about hot reload react
     add code spliting 
     add adaptive
-    eslint loader
     webpack config
-    hot module replacement
     own browserlist
-    react memo 
+    react memo
     reselect
-    redux hooks
+    const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+    const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+    const safePostCssParser = require('postcss-safe-parser');
 */
 
 const config = {
@@ -29,7 +27,7 @@ const config = {
         path: path.resolve(__dirname, 'build/'),
         filename: !isProd ? '[name].js' : '[name].[hash].js',
     },
-    devtool: isProd && 'cheap-module-source-map',
+    devtool: 'cheap-module-source-map',
     devServer: {
         compress: true,
         overlay: true,
@@ -69,7 +67,7 @@ const config = {
                             {
                                 loader: MiniCssExtractPlugin.loader,
                                 options: {
-                                    hmr: !isProd,
+                                    hmr: !isProd, // read about
                                 },
                             },
                             {
@@ -88,7 +86,7 @@ const config = {
                         loader: 'file-loader',
                         exclude: /\.(js|css|html|svg)/,
                         options: {
-                            name: 'images/[name].[ext]',
+                            name: 'images/[name]_[hash].[ext]',
                         },
                     },
                 ],
@@ -118,6 +116,9 @@ const config = {
         }),
         new webpack.DefinePlugin({
             _API: JSON.stringify(process.env.API),
+            _API_NK: JSON.stringify(process.env.API_NK),
+            _ENV: JSON.stringify(process.env.NODE_ENV),
+            _KEY: JSON.stringify(process.env.KEY),
         }),
         new HtmlWebpackPlugin({
             inject: false,
@@ -128,7 +129,6 @@ const config = {
             new CleanWebpackPlugin({
                 cleanStaleWebpackAssets: false,
             }),
-        !isProd && new webpack.HotModuleReplacementPlugin(),
     ].filter(Boolean),
 };
 
