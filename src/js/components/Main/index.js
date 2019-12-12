@@ -8,6 +8,7 @@ import Sidebar from 'components/Sidebar';
 import Container from 'components/Container';
 import TaskList from 'components/TaskList';
 import { changeCurrent } from 'store/actions';
+import { getTasks } from 'store/selectors';
 
 import close from 'Images/close.png';
 import styles from './styles.css';
@@ -117,10 +118,16 @@ Main.propTypes = {
     changeCurrent: PropTypes.func,
 };
 
-const mapStateToProps = ({ statements: { items: tasks, currentStatementId } }) => ({
-    tasks,
-    currentStatementId,
-});
+const mapStateToProps = state => {
+    const {
+        statements: { currentStatementId },
+    } = state;
+
+    return {
+        tasks: getTasks(state),
+        currentStatementId,
+    };
+};
 
 const mapDispatchToProps = {
     changeCurrent,
