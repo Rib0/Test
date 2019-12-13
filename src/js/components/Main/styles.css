@@ -25,6 +25,8 @@
 }
 
 .content {
+    display: flex;
+    flex-direction: column;
     flex: 0 0 65%;
     max-width: 65%;
 }
@@ -53,18 +55,27 @@
     overflow: hidden;
 }
 
-.close {
+.buttonClose {
     width: 16px;
     height: 16px;
+    padding: 0;
     cursor: pointer;
     margin-left: 10px;
     position: absolute;
     right: 22px;
+    border: none;
+    background: none;
+
+    & img {
+        width: 100%;
+        height: auto;
+    }
 }
 
 .content__info {
     display: flex;
     background: #ecf3f7;
+    flex-grow: 1;
 }
 
 .content__main {

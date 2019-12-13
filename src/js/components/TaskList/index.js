@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Button from 'components/Button';
+import Loader from 'components/Loader';
 import Task from './Task';
 
 import styles from './styles.css';
@@ -15,16 +16,26 @@ const TaskList = ({ tasks, currentStatementId, changeCurrent }) => (
                 <span className={styles.name}>Название</span>
             </div>
         </li>
-        {tasks.map(task => (
-            <Task
-                key={task.id}
-                {...task}
-                currentStatementId={currentStatementId}
-                onClick={changeCurrent}
-            />
-        ))}
+        {tasks.length ? (
+            tasks.map(task => (
+                <Task
+                    key={task.id}
+                    {...task}
+                    currentStatementId={currentStatementId}
+                    onClick={changeCurrent}
+                />
+            ))
+        ) : (
+            <Loader />
+        )}
     </ul>
 );
+
+TaskList.defaultProps = {
+    tasks: [],
+    currentStatementId: null,
+    changeCurrent: null,
+};
 
 TaskList.propTypes = {
     tasks: PropTypes.arrayOf(PropTypes.object),

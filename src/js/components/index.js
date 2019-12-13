@@ -17,12 +17,16 @@ class App extends Component {
     }
 }
 
-const mapDispatchToProps = {
-    getStatements: getStatementsApi,
+App.defaultProps = {
+    getStatements: null,
 };
 
 App.propTypes = {
     getStatements: PropTypes.func,
+};
+
+const mapDispatchToProps = {
+    getStatements: getStatementsApi,
 };
 
 export default hot(

@@ -9,7 +9,7 @@ import Container from 'components/Container';
 import TaskList from 'components/TaskList';
 import Info from 'components/Info';
 import { changeCurrent } from 'store/actions';
-import { getTasks } from 'store/selectors';
+import { getTasks, getCurrentStatement } from 'store/selectors';
 
 import close from 'Images/close.png';
 import styles from './styles.css';
@@ -17,7 +17,17 @@ import styles from './styles.css';
 /* eslint-disable */
 
 class Main extends Component {
+    state = {
+        activeToolTip: true,
+    };
+
+    onClick = () => this.setState({ activeToolTip: false });
+
     render() {
+        const { currentStatement } = this.props;
+        const { description } = currentStatement;
+        const { activeToolTip } = this.state;
+
         return (
             <Container>
                 <Sidebar />
@@ -28,20 +38,24 @@ class Main extends Component {
                     <div className={styles.preview}>
                         <TaskList {...this.props} />
                         <div className={styles.content}>
-                            <div className={styles.content__header}>
-                                <span className={styles.content__headerNumber}>№ 67405</span>
-                                <p className={styles.content__headerText}>
-                                    Просьба оценить разработку рекламного баннера на новорижском
-                                    шоссе. Форматы 500x500x30. Материал - полиестирол хорошего
-                                    качества.
-                                </p>
-                                <img className={styles.close} src={close} alt="close" />
-                            </div>
+                            {activeToolTip && (
+                                <div className={styles.content__header}>
+                                    <span className={styles.content__headerNumber}>№ 67405</span>
+                                    <p className={styles.content__headerText}>
+                                        Просьба оценить разработку рекламного баннера на новорижском
+                                        шоссе. Форматы 500x500x30. Материал - полиестирол хорошего
+                                        качества.
+                                    </p>
+                                    <button onClick={this.onClick} className={styles.buttonClose}>
+                                        <img src={close} alt="close" />
+                                    </button>
+                                </div>
+                            )}
                             <div className={styles.content__info}>
                                 <div className={styles.content__main}>
                                     <div className={styles.content__description}>
                                         <p className={styles.label}>Описание</p>
-                                        <p>qweklqejqlkwejqweklqjeklqjelkjelkwqjekqwklejlk</p>
+                                        <p dangerouslySetInnerHTML={{ __html: description }} />
                                     </div>
                                     <div className={styles.comments}>
                                         <p className={styles.label}>Добавление комментариев</p>
@@ -69,7 +83,7 @@ class Main extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <Info />
+                                <Info currentStatement={currentStatement} />
                             </div>
                         </div>
                     </div>
@@ -79,9 +93,17 @@ class Main extends Component {
     }
 }
 
+Main.defaultProps = {
+    tasks: [],
+    currentStatementId: null,
+    currentStatement: {},
+    changeCurrent: null,
+};
+
 Main.propTypes = {
     tasks: PropTypes.arrayOf(PropTypes.object),
     currentStatementId: PropTypes.number,
+    currentStatement: PropTypes.object,
     changeCurrent: PropTypes.func,
 };
 
@@ -93,6 +115,7 @@ const mapStateToProps = state => {
     return {
         tasks: getTasks(state),
         currentStatementId,
+        currentStatement: getCurrentStatement(state),
     };
 };
 

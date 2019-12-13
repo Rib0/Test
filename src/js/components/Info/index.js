@@ -1,56 +1,88 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import { getCurrentStatement } from 'store/selectors';
 import styles from './styles.css';
 
-class Info extends Component {
-    render() {
-        console.log(this.props.currentStatement);
+const Info = () => {
+        const { currentStatement } = this.props;
+        const {
+            statusName,
+            statusRgb,
+            initiatorName,
+            createdAt,
+            executorName,
+            priorityName,
+            resolutionDatePlan,
+            tags,
+        } = currentStatement;
+
+        if (!currentStatement || !Object.keys(currentStatement).length) return null;
 
         return (
             <div className={styles.info}>
-                <div className={styles.info__status}>В работе</div>
+                <div className={styles.info__status}>
+                    <div
+                        className={styles.info__statusLabel}
+                        style={{ backgroundColor: statusRgb }}
+                     />
+                    {statusName}
+                </div>
                 <div className={styles.info__item}>
                     <div className={styles.info__header}>Заявитель</div>
-                    <div className={styles.info__value}>Александр Вознесенский</div>
+                    <div className={styles.info__value}>{initiatorName}</div>
                 </div>
                 <div className={styles.info__item}>
                     <div className={styles.info__header}>Создана</div>
-                    <div className={styles.info__value}>Маркова Анна</div>
+                    <div className={styles.info__value}>
+                        {new Date(createdAt).toLocaleDateString()}
+                    </div>
                 </div>
                 <div className={styles.info__item}>
                     <div className={styles.info__header}>Исполнитель</div>
                     <div className={styles.info__value}>
-                        <a href="#">Кожин Игорь</a>
+                        <a href="#">{executorName}</a>
                     </div>
                 </div>
                 <div className={styles.info__item}>
                     <div className={styles.info__header}>Приоритет</div>
-                    <div className={styles.info__value}>Высокий</div>
+                    <div className={styles.info__value}>{priorityName}</div>
                 </div>
                 <div className={styles.info__item}>
                     <div className={styles.info__header}>Срок</div>
-                    <div className={styles.info__value}>12.11.2018 г.</div>
+                    <div className={styles.info__value}>
+                        {new Date(resolutionDatePlan).toLocaleDateString()}
+                    </div>
                 </div>
-                <div className={styles.info__item}>
-                    <div className={styles.info__header}>Теги</div>
-                    <div className={styles.info__tag}>Сервер 1</div>
-                    <br />
-                    <div className={styles.info__tag}>mb_support_mymercedec</div>
-                </div>
+                {!!tags.length && (
+                    <div className={styles.info__item}>
+                        <div className={styles.info__header}>Теги</div>
+                        {tags.map(tag => (
+                            <>
+                                <div className={styles.info__tag}>{tag.name}</div>
+                                <br />
+                            </>
+                        ))}
+                    </div>
+                )}
             </div>
         );
     }
-}
 
-const mapStateToProps = state => ({
-    currentStatement: getCurrentStatement(state),
-});
-
-Info.propTypes = {
-    currentStatement: PropTypes.object,
+Info.defaultProps = {
+    currentStatement: null,
 };
 
-export default connect(mapStateToProps)(Info);
+Info.propTypes = {
+    currentStatement: PropTypes.shape({
+        statusName: PropTypes.string,
+        statusRgb: PropTypes.string,
+        initiatorName: PropTypes.string,
+        createdAt: PropTypes.string,
+        executorName: PropTypes.string,
+        priorityName: PropTypes.string,
+        resolutionDatePlan: PropTypes.string,
+        tags: PropTypes.arrayOf(PropTypes.object),
+    }),
+};
+
+export default Info;

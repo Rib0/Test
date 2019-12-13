@@ -24,6 +24,13 @@ const Task = ({ currentStatementId, id, onClick, name }) => {
     );
 };
 
+Task.defaultProps = {
+    currentStatementId: null,
+    id: null,
+    name: 'Без названия',
+    onClick: null,
+};
+
 Task.propTypes = {
     currentStatementId: PropTypes.number,
     id: PropTypes.number,
