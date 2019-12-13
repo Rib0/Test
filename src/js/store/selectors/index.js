@@ -8,8 +8,3 @@ export const getTasks = createSelector(
     [tasksSelector],
     tasks => tasks
 );
-
-export const getCurrentStatement = createSelector(
-    [tasksSelector, currentStatementIdSelector],
-    (tasks, currentStatementId) => tasks.find(task => task.id === currentStatementId)
-);

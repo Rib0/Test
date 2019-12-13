@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import styles from './styles.css';
 
-const Info = () => {
-        const { currentStatement } = this.props;
+const Info = props => {
+        const { currentStatement } = props;
         const {
             statusName,
             statusRgb,

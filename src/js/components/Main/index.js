@@ -9,7 +9,7 @@ import Container from 'components/Container';
 import TaskList from 'components/TaskList';
 import Info from 'components/Info';
 import { changeCurrent } from 'store/actions';
-import { getTasks, getCurrentStatement } from 'store/selectors';
+import { getTasks } from 'store/selectors';
 
 import close from 'Images/close.png';
 import styles from './styles.css';
@@ -109,13 +109,13 @@ Main.propTypes = {
 
 const mapStateToProps = state => {
     const {
-        statements: { currentStatementId },
+        statements: { currentStatementId, items },
     } = state;
 
     return {
         tasks: getTasks(state),
         currentStatementId,
-        currentStatement: getCurrentStatement(state),
+        currentStatement: items.find(item => item.id === currentStatementId)
     };
 };
 
