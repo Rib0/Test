@@ -1,12 +1,17 @@
 /* eslint-disable */
 
-import { getStatements, getPriorities, getStatuses } from 'store/actions';
+import { getStatements, getPriorities, getStatuses, toggleFetchStatements } from 'store/actions';
 import { request } from 'utils';
 
 export const getStatementsApi = () => dispatch => {
+    dispatch(toggleFetchStatements(true));
     request({
         url: `${_API_NK}odata/tasks?tenantguid=${_KEY}`,
-    }).then(({ value }) => dispatch(getStatements(value)));
+    })
+        .finally(() => dispatch(toggleFetchStatements(false)))
+        .then(({ value }) => {
+            dispatch(getStatements(value));
+        });
 };
 
 export const getPrioritiesApi = () => dispatch => {

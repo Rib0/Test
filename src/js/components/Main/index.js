@@ -98,6 +98,7 @@ Main.defaultProps = {
     currentStatementId: null,
     currentStatement: {},
     changeCurrent: null,
+    fetchingStatements: false,
 };
 
 Main.propTypes = {
@@ -105,17 +106,20 @@ Main.propTypes = {
     currentStatementId: PropTypes.number,
     currentStatement: PropTypes.object,
     changeCurrent: PropTypes.func,
+    fetchingStatements: PropTypes.bool,
 };
 
 const mapStateToProps = state => {
     const {
         statements: { currentStatementId, items },
+        requests: { fetchingStatements },
     } = state;
 
     return {
         tasks: getTasks(state),
         currentStatementId,
-        currentStatement: items.find(item => item.id === currentStatementId)
+        currentStatement: items.find(item => item.id === currentStatementId),
+        fetchingStatements,
     };
 };
 

@@ -7,7 +7,7 @@ import Task from './Task';
 
 import styles from './styles.css';
 
-const TaskList = ({ tasks, currentStatementId, changeCurrent }) => (
+const TaskList = ({ tasks, currentStatementId, changeCurrent, fetchingStatements }) => (
     <ul className={styles.list}>
         <li className={styles.list__header}>
             <Button className={styles.button} text="Создать заявку" />
@@ -16,7 +16,7 @@ const TaskList = ({ tasks, currentStatementId, changeCurrent }) => (
                 <span className={styles.name}>Название</span>
             </div>
         </li>
-        {tasks.length ? (
+        {!fetchingStatements ? (
             tasks.map(task => (
                 <Task
                     key={task.id}
@@ -35,12 +35,14 @@ TaskList.defaultProps = {
     tasks: [],
     currentStatementId: null,
     changeCurrent: null,
+    fetchingStatements: false,
 };
 
 TaskList.propTypes = {
     tasks: PropTypes.arrayOf(PropTypes.object),
     currentStatementId: PropTypes.number,
     changeCurrent: PropTypes.func,
+    fetchingStatements: PropTypes.bool,
 };
 
 export default TaskList;
