@@ -24,7 +24,7 @@ class Main extends Component {
     onClick = () => this.setState({ activeToolTip: false });
 
     render() {
-        const { currentStatement } = this.props;
+        const { currentStatement, ...props } = this.props;
         const { description } = currentStatement;
         const { activeToolTip } = this.state;
 
@@ -36,7 +36,7 @@ class Main extends Component {
                         <input type="text" className={styles.input} />
                     </div>
                     <div className={styles.preview}>
-                        <TaskList {...this.props} />
+                        <TaskList {...props} />
                         <div className={styles.content}>
                             {activeToolTip && (
                                 <div className={styles.content__header}>
