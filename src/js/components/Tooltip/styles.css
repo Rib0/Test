@@ -1,0 +1,40 @@
+.tooltip {
+    flex: 0 0 100%;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #1a4876;
+    padding: 12px 36px 12px 25px;
+    max-height: 100px;
+    position: relative;
+
+    &__number {
+        color: #fff;
+        margin-right: 25px;
+    }
+
+    &__text {
+        flex: 0 1 560px;
+        max-width: 560px;
+        color: #fff;
+        max-height: 100%;
+        overflow: hidden;
+    }
+}
+
+.buttonClose {
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    cursor: pointer;
+    margin-left: 10px;
+    position: absolute;
+    right: 22px;
+    border: none;
+    background: none;
+
+    & img {
+        width: 100%;
+        height: auto;
+    }
+}
