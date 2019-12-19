@@ -23,6 +23,14 @@
     border-left: none;
     border-top: none;
     border-right-width: 1.5px;
+    max-height: 587px;
+    overflow-y: auto;
+
+    /* hide scrollbar */
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+        width: 0;
+    }
 }
 
 .list__header {

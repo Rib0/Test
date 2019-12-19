@@ -2,6 +2,13 @@
     background-color: #002137;
     padding-top: 15px;
     font-size: 0.8rem;
+    height: 650px;
+
+    /* hide scrollbar */
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+        width: 0;
+    }
 }
 
 .logo {
