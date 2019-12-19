@@ -10,10 +10,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const isProd = process.env.NODE_ENV === 'production';
 
 /*
-    add code spliting 
+    add code spliting
     add adaptive
     webpack config
-    own browserlist
     react memo
     reselect
     const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
