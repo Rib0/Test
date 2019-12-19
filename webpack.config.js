@@ -15,6 +15,8 @@ const isProd = process.env.NODE_ENV === 'production';
     webpack config
     react memo
     reselect
+    react-act
+    redux-form
     const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
     const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
     const safePostCssParser = require('postcss-safe-parser');
