@@ -17,6 +17,7 @@ const isProd = process.env.NODE_ENV === 'production';
     reselect
     react-act
     redux-form
+    webpack analize
     const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
     const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
     const safePostCssParser = require('postcss-safe-parser');
