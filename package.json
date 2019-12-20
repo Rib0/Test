@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "cross-env webpack-dev-server --mode=development",
     "build": "cross-env NODE_ENV='production' webpack --mode=production",
+    "analyze": "cross-env NODE_ENV='analyze' webpack --mode=production",
     "prettier": "prettier --write ./src/js/**/**/**",
     "eslint": "eslint ./src/js/**/**/*.js"
   },

@@ -9,6 +9,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const isProd = process.env.NODE_ENV === 'production';
+const isAnalyze = process.env.NODE_ENV === 'analyze';
 
 /*
     add code spliting
@@ -76,7 +77,7 @@ const config = {
                                     importLoaders: 3,
                                 },
                             },
-                            'postcss-loader'
+                            'postcss-loader',
                         ],
                     },
                     {
@@ -126,9 +127,9 @@ const config = {
             new CleanWebpackPlugin({
                 cleanStaleWebpackAssets: false,
             }),
-        new BundleAnalyzerPlugin({
-            analyzerPort: 8000
-        })
+        isAnalyze && new BundleAnalyzerPlugin({
+            analyzerPort: 8000,
+        }),
     ].filter(Boolean),
 };
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-import styles from './styles.css';
 
 import Logo from 'Images/logo.png';
 import Book from 'Images/book.png';
@@ -10,6 +9,7 @@ import People from 'Images/people.png';
 import City from 'Images/city.png';
 import Analytics from 'Images/analytics.png';
 import Settings from 'Images/Settings.png';
+import styles from './styles.css';
 
 const items = [
     {

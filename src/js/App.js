@@ -11,7 +11,6 @@ import { getStatementsApi } from 'api';
 import routes from 'routes';
 
 class App extends Component {
-
     componentDidMount() {
         const { getStatements } = this.props;
         getStatements();
@@ -23,29 +22,25 @@ class App extends Component {
                 <Sidebar />
                 <Switch>
                     {routes.map(({ path, component }) => (
-                        <Route 
-                            path={path}
-                            component={component}
-                            key={path}
-                        />
+                        <Route path={path} component={component} key={path} />
                     ))}
                 </Switch>
             </Container>
-        )
+        );
     }
 }
 
 App.defaultProps = {
-    getStatements: null
-}
+    getStatements: null,
+};
 
 App.propTypes = {
-    getStatements: PropTypes.func
-}
+    getStatements: PropTypes.func,
+};
 
 const mapDispatchToProps = {
-    getStatements: getStatementsApi
-}
+    getStatements: getStatementsApi,
+};
 
 export default hot(
     connect(
@@ -53,4 +48,3 @@ export default hot(
         mapDispatchToProps
     )(App)
 );
-
