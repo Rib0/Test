@@ -1,17 +1,19 @@
+import { createAction } from 'redux-act';
+
 // statements
 
-export const getStatements = payload => ({ type: 'GET_STATEMENTS', payload });
+export const getStatements = createAction('get statements');
 
-export const changeCurrent = payload => ({ type: 'CHANGE_CURRENT', payload });
+export const changeCurrent = createAction('change current');
 
-export const addStatement = payload => ({ type: 'ADD_STATEMENT', payload });
+export const addStatement = createAction('add statement');
 
-export const editStatement = payload => ({ type: 'EDIT_STATEMENT', payload });
+export const editStatement = createAction('edit statement');
 
-export const getStatuses = payload => ({ type: 'GET_STATUSES', payload });
+export const getStatuses = createAction('get statuses');
 
-export const getPriorities = payload => ({ type: 'GET_PRIORITIES', payload });
+export const getPriorities = createAction('get priorities');
 
 // requests
 
-export const toggleFetchStatements = payload => ({ type: 'TOGGLE_FETCH_STATEMENTS', payload });
+export const toggleFetchStatements = createAction('toggle fetch statements');

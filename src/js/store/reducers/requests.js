@@ -1,12 +1,16 @@
+import { createReducer } from 'redux-act';
+import { toggleFetchStatements } from 'store/actions';
+
 const initialState = {
     fetchingStatements: false,
 };
 
-export default (state = initialState, { type, payload }) => {
-    switch (type) {
-        case 'TOGGLE_FETCH_STATEMENTS':
-            return { ...state, fetchingStatements: payload };
-        default:
-            return state;
-    }
-};
+export default createReducer(
+    {
+        [toggleFetchStatements]: (state, payload) => ({
+            ...state,
+            fetchingStatements: payload,
+        }),
+    },
+    initialState
+);

@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import Sidebar from 'components/Sidebar';
-import Container from 'components/Container';
 import TaskList from 'components/TaskList';
 import Centerpannel from 'components/Centerpannel';
 import Tooltip from 'components/Tooltip';
@@ -26,28 +24,25 @@ class Main extends Component {
         const { activeToolTip } = this.state;
 
         return (
-            <Container>
-                <Sidebar />
-                <div className={styles.main}>
-                    <div className={styles.header}>
-                        <input type="text" className={styles.input} />
-                    </div>
-                    <div className={styles.preview}>
-                        <TaskList {...props} />
-                        <div className={styles.content}>
-                            {activeToolTip && (
-                                <Tooltip
-                                    text="Просьба оценить разработку рекламного баннера на новорижском
+            <div className={styles.main}>
+                <div className={styles.header}>
+                    <input type="text" className={styles.input} />
+                </div>
+                <div className={styles.preview}>
+                    <TaskList {...props} />
+                    <div className={styles.content}>
+                        {activeToolTip && (
+                            <Tooltip
+                                text="Просьба оценить разработку рекламного баннера на новорижском
                                         шоссе. Форматы 500x500x30. Материал - полиестирол хорошего
                                         качества."
-                                    onClick={this.onClick}
-                                />
-                            )}
-                            <Centerpannel currentStatement={currentStatement} />
-                        </div>
+                                onClick={this.onClick}
+                            />
+                        )}
+                        <Centerpannel currentStatement={currentStatement} />
                     </div>
                 </div>
-            </Container>
+            </div>
         );
     }
 }

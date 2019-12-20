@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -14,13 +15,7 @@ const isProd = process.env.NODE_ENV === 'production';
     add adaptive
     webpack config
     react memo
-    reselect
-    react-act
     redux-form
-    webpack analize
-    const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-    const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-    const safePostCssParser = require('postcss-safe-parser');
 */
 
 const config = {
@@ -81,7 +76,7 @@ const config = {
                                     importLoaders: 3,
                                 },
                             },
-                            'postcss-loader',
+                            'postcss-loader'
                         ],
                     },
                     {
@@ -131,6 +126,9 @@ const config = {
             new CleanWebpackPlugin({
                 cleanStaleWebpackAssets: false,
             }),
+        new BundleAnalyzerPlugin({
+            analyzerPort: 8000
+        })
     ].filter(Boolean),
 };
 

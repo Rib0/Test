@@ -14,7 +14,6 @@
 .logo {
     display: block;
     margin: 0 auto;
-    margin-bottom: 25px;
     user-select: none;
 }
 
@@ -24,8 +23,14 @@
     text-align: center;
     cursor: pointer;
     user-select: none;
+    list-style-type: none;
+    display: block;
 
     &:hover {
+        background-color: #002c49;
+    }
+
+    &--active {
         background-color: #002c49;
     }
 }

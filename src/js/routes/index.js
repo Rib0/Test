@@ -1,4 +1,4 @@
-import Main from 'components/Main';
+import Main from 'containers/Main';
 
 // todo exact / strict
 
@@ -6,29 +6,36 @@ export default [
     {
         path: '/',
         component: Main,
+        exact: true,
     },
     {
-        path: 'foundation',
+        path: '/foundation',
         component: Main,
+        exact: true,
     },
     {
-        path: 'requests',
+        path: '/requests',
         component: Main,
+        exact: true,
     },
     {
-        path: 'workers',
+        path: '/workers',
         component: Main,
+        exact: true,
     },
     {
-        path: 'clients',
+        path: '/clients',
         component: Main,
+        exact: true,
     },
     {
-        path: 'assets',
+        path: '/assets',
         component: Main,
+        exact: true,
     },
     {
-        path: 'settings',
+        path: '/settings',
         component: Main,
+        exact: true,
     },
 ];

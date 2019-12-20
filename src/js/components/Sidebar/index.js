@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
 import styles from './styles.css';
 
@@ -12,26 +13,32 @@ import Settings from 'Images/Settings.png';
 
 const items = [
     {
+        to: '/foundation',
         name: 'База знаний',
         img: Book,
     },
     {
+        to: '/requests',
         name: 'Заявки',
         img: File,
     },
     {
+        to: '/workers',
         name: 'Сотрудники',
         img: People,
     },
     {
+        to: '/clients',
         name: 'Клиенты',
         img: City,
     },
     {
+        to: '/assets',
         name: 'Активы',
         img: Analytics,
     },
     {
+        to: '/settings',
         name: 'Настройки',
         img: Settings,
     },
@@ -40,12 +47,20 @@ const items = [
 const Sidebar = () => {
     return (
         <div className={styles.sidebar}>
-            <img className={styles.logo} src={Logo} />
+            <Link to="/" className={styles.item}>
+                <img className={styles.logo} src={Logo} />
+            </Link>
             {items.map(item => (
-                <div className={styles.item}>
+                <NavLink
+                    to={item.to}
+                    exact={item.exact}
+                    activeClassName={styles['item--active']}
+                    className={styles.item}
+                    key={item.to}
+                >
                     <img className={styles.item__img} src={item.img} />
                     <p>{item.name}</p>
-                </div>
+                </NavLink>
             ))}
         </div>
     );

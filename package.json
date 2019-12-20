@@ -4,7 +4,7 @@
   "description": "Test with React / Redux",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV='development' webpack-dev-server --mode=development",
+    "dev": "cross-env webpack-dev-server --mode=development",
     "build": "cross-env NODE_ENV='production' webpack --mode=production",
     "prettier": "prettier --write ./src/js/**/**/**",
     "eslint": "eslint ./src/js/**/**/*.js"
@@ -65,6 +65,7 @@
     "postcss-loader": "^3.0.0",
     "postcss-nested": "^4.1.2",
     "postcss-preset-env": "^6.7.0",
+    "postcss-safe-parser": "^4.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
@@ -72,6 +73,7 @@
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.1",
+    "redux-act": "^1.7.7",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
@@ -97,6 +99,7 @@
     "stylelint-config-prettier": "^7.0.0",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-config-standard": "^19.0.0",
+    "webpack-bundle-analyzer": "^3.6.0",
     "webpack-dev-server": "^3.3.1"
   }
 }
