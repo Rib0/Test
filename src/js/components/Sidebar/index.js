@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-
 import Logo from 'Images/logo.png';
 import Book from 'Images/book.png';
 import File from 'Images/file.png';

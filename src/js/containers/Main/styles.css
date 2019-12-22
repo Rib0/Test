@@ -3,24 +3,8 @@
     padding: 15px 0 10px 17px;
 }
 
-.input {
-    border-radius: 20px;
-    border: none;
-    padding: 11px 35px 11px 11px;
-    width: 680px;
-    background: #fff url('~Images/search.png') no-repeat 98% 50%;
-
-    &:focus {
-        box-shadow: 0 0 10px #85c3f6;
-        outline-color: transparent;
-    }
-}
-
 .main {
     flex: 1 1;
-}
-
-.preview {
     display: flex;
 }
 

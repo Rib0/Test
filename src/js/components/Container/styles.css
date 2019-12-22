@@ -3,4 +3,14 @@
     max-width: 1600px;
     margin: 0 auto;
     display: flex;
+    flex-wrap: wrap;
+
+    &_noflex {
+        flex: 1 1;
+    }
+
+    &_main {
+        display: flex;
+        flex: 1 1;
+    }
 }
