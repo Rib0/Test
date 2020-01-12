@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import styles from './styles.css';
@@ -15,8 +16,6 @@ const Info = props => {
         resolutionDatePlan,
         tags,
     } = currentStatement;
-
-    if (!currentStatement || !Object.keys(currentStatement).length) return null;
 
     return (
         <div className={styles.info}>
@@ -51,11 +50,11 @@ const Info = props => {
             {!!tags.length && (
                 <div className={styles.info__item}>
                     <div className={styles.info__header}>Теги</div>
-                    {tags.map(tag => (
-                        <>
+                    {tags.map((tag, index) => (
+                        <Fragment key={index}>
                             <div className={styles.info__tag}>{tag.name}</div>
                             <br />
-                        </>
+                        </Fragment>
                     ))}
                 </div>
             )}
@@ -64,7 +63,7 @@ const Info = props => {
 };
 
 Info.defaultProps = {
-    currentStatement: null,
+    currentStatement: {},
 };
 
 Info.propTypes = {
@@ -80,4 +79,8 @@ Info.propTypes = {
     }),
 };
 
-export default Info;
+const mapStateToProps = ({ statements: { items, currentStatementId } }) => ({
+    currentStatement: items.find(item => item.id === currentStatementId),
+});
+
+export default connect(mapStateToProps)(Info);

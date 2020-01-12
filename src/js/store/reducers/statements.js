@@ -2,7 +2,7 @@ import { createReducer } from 'redux-act';
 import { getStatements, addStatement, editStatement, changeCurrent } from 'store/actions';
 
 const initialState = {
-    currentStatementId: 0,
+    currentStatementId: null,
     items: [],
 };
 

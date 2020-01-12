@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Info from 'components/Info';
@@ -43,7 +44,7 @@ class Centerpannel extends Component {
                         </div>
                     </div>
                 </div>
-                <Info currentStatement={currentStatement} />
+                <Info />
             </div>
         );
     }
@@ -57,4 +58,14 @@ Centerpannel.propTypes = {
     currentStatement: PropTypes.object,
 };
 
-export default Centerpannel;
+const mapStateToProps = state => {
+    const {
+        statements: { currentStatementId, items },
+    } = state;
+
+    return {
+        currentStatement: items.find(item => item.id === currentStatementId),
+    };
+};
+
+export default connect(mapStateToProps)(Centerpannel);

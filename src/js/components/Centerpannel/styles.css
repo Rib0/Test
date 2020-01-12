@@ -1,6 +1,6 @@
 .content__info {
     display: flex;
-    background: #ecf3f7;
+    background: var(--color-sea);
     flex-grow: 1;
 }
 
@@ -43,7 +43,7 @@
     height: 40px;
     border-radius: 20px;
     border: 1px solid lightgray;
-    background: #fff;
+    background: var(--color-white);
     margin-right: 11px;
 }
 

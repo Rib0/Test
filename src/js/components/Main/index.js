@@ -17,8 +17,10 @@ class Main extends Component {
     onClick = () => this.setState({ activeToolTip: false });
 
     render() {
-        const { currentStatement } = this.props;
         const { activeToolTip } = this.state;
+        const { currentStatementId } = this.props;
+
+        if (!currentStatementId) return null;
 
         return (
             <div className={styles.content}>
@@ -30,7 +32,7 @@ class Main extends Component {
                         onClick={this.onClick}
                     />
                 )}
-                <Centerpannel currentStatement={currentStatement} />
+                <Centerpannel />
             </div>
         );
     }
@@ -38,28 +40,18 @@ class Main extends Component {
 
 Main.defaultProps = {
     tasks: [],
-    currentStatementId: null,
-    currentStatement: {},
     fetchingStatements: false,
+    currentStatementId: null,
 };
 
 Main.propTypes = {
     tasks: PropTypes.arrayOf(PropTypes.object),
-    currentStatementId: PropTypes.number,
-    currentStatement: PropTypes.object,
     fetchingStatements: PropTypes.bool,
+    currentStatementId: PropTypes.number,
 };
 
-const mapStateToProps = state => {
-    const {
-        statements: { currentStatementId, items },
-    } = state;
+const mapStateToProps = ({ statements: { currentStatementId } }) => ({
+    currentStatementId,
+});
 
-    return {
-        currentStatement: items.find(item => item.id === currentStatementId),
-    };
-};
-
-export default connect(
-    mapStateToProps,
-)(Main);
+export default connect(mapStateToProps)(Main);

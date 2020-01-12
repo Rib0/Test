@@ -1,5 +1,5 @@
 .header {
-    background-color: #d1e0ed;
+    background-color: var(--color-light-blue);
     padding: 15px 0 10px 17px;
 }
 
@@ -21,4 +21,12 @@
     &::-webkit-scrollbar {
         width: 0;
     }
+}
+
+.list {
+    flex: 0 0 65%;
+    max-width: 35%;
+    padding-top: 25px;
+    max-height: 650px;
+    overflow-y: auto;
 }

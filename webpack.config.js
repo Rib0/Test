@@ -15,7 +15,6 @@ const isAnalyze = process.env.NODE_ENV === 'analyze';
     add code spliting
     add adaptive
     webpack config
-    react memo
     redux-form
 */
 
@@ -65,7 +64,7 @@ const config = {
                             {
                                 loader: MiniCssExtractPlugin.loader,
                                 options: {
-                                    hmr: !isProd, // read about
+                                    hmr: !isProd,
                                 },
                             },
                             {
@@ -127,9 +126,10 @@ const config = {
             new CleanWebpackPlugin({
                 cleanStaleWebpackAssets: false,
             }),
-        isAnalyze && new BundleAnalyzerPlugin({
-            analyzerPort: 8000,
-        }),
+        isAnalyze &&
+            new BundleAnalyzerPlugin({
+                analyzerPort: 8000,
+            }),
     ].filter(Boolean),
 };
 
