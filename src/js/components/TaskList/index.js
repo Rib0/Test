@@ -14,36 +14,27 @@ import styles from './styles.css';
 const cx = classNames.bind(styles);
 
 const TaskList = ({ tasks, currentStatementId, changeCurrent, fetchingStatements }) => {
-    const listClassName = cx('list', {
-        'list--fullWidth': !currentStatementId,
-    });
-
     return (
-        <ul className={listClassName}>
+        <ul className={styles.list}>
             <li className={styles.list__itemButton}>
                 <Button className={styles.button} text="Создать заявку" />
             </li>
-            <li className={styles.list__header}>
-                <div className={styles.names}>
-                    <span className={styles.id}>ID</span>
-                    <span className={styles.name}>Название</span>
-                    {!currentStatementId && (
-                        <>
-                            <span className={styles.status}>Статус</span>
-                            <span className={styles.executor}>Исполнитель</span>
-                        </>
-                    )}
-                </div>
-            </li>
             {!fetchingStatements ? (
-                tasks.map(task => (
-                    <Task
-                        key={task.id}
-                        {...task}
-                        currentStatementId={currentStatementId}
-                        onClick={changeCurrent}
-                    />
-                ))
+                <>
+                    <li className={styles.list__header}>
+                        <span className={styles.id}>ID</span>
+                        <span className={styles.name}>Название</span>
+                        {!currentStatementId && (
+                            <>
+                                <span className={styles.status}>Статус</span>
+                                <span className={styles.executor}>Исполнитель</span>
+                            </>
+                        )}
+                    </li>
+                    {tasks.map(task => (
+                        <Task key={task.id} {...task} currentStatementId={currentStatementId} onClick={changeCurrent} />
+                    ))}
+                </>
             ) : (
                 <Loader />
             )}

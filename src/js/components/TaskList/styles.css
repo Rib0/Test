@@ -1,6 +1,4 @@
 .list {
-    flex: 0 0 35%;
-    max-width: 35%;
     padding-top: 25px;
     padding-right: 0.5px;
     list-style-type: none;
@@ -38,37 +36,24 @@
     }
 
     &__header {
+        display: flex;
         border-bottom: 1px solid #d7dce0;
         position: relative;
-        padding-bottom: 10px;
-    }
+        padding: 0 0 10px 50px;
 
-    &--fullWidth {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-}
+        & > .id::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            font-weight: normal;
+            background-color: #d7dce0;
+            width: 1px;
+            height: 100%;
+        }
 
-.button {
-    display: block;
-}
-
-.names {
-    display: flex;
-    padding-left: 50px;
-
-    & > .id::after {
-        content: '';
-        position: absolute;
-        right: 0;
-        font-weight: normal;
-        background-color: #d7dce0;
-        width: 1px;
-        height: 100%;
-    }
-
-    & > span {
-        font-weight: bold;
+        & > span {
+            font-weight: bold;
+        }
     }
 }
 
@@ -86,11 +71,15 @@
 
 .name {
     padding: 0 20px;
-    flex: 1 1;
+    flex: 0 1 530px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .status {
-    padding: 0 50px 0 20px;
+    flex: 0 0 150px;
+    padding-left: 20px;
     position: relative;
 
     &::before {

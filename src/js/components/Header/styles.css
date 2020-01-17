@@ -1,7 +1,8 @@
 .header {
+    flex: 0 0 100%;
+    max-width: 100%;
     background-color: var(--color-light-blue);
     padding: 15px 0 10px 17px;
-    flex: 0 0 100%;
 }
 
 .input {

@@ -6,7 +6,7 @@ import styles from './styles.css';
 
 const cx = classNames.bind(styles);
 
-const Task = ({ currentStatementId, id, onClick, name }) => {
+const Task = ({ currentStatementId, id, onClick, name, executorName }) => {
     const onSelect = () => {
         onClick(id);
     };
@@ -20,6 +20,12 @@ const Task = ({ currentStatementId, id, onClick, name }) => {
         <li className={taskClassName} onClick={onSelect} role="menuitem" aria-hidden>
             <span className={styles.id}>{id}</span>
             <span className={styles.name}>{name || 'Без названия'}</span>
+            {!currentStatementId && (
+                <>
+                    <span className={styles.status}>qwe</span>
+                    <span className={styles.executor}>{executorName}</span>
+                </>
+            )}
         </li>
     );
 };

@@ -1,16 +1,6 @@
-.header {
-    background-color: var(--color-light-blue);
-    padding: 15px 0 10px 17px;
-}
-
-.main {
-    flex: 1 1;
-    display: flex;
-}
-
 .content {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     flex: 0 0 65%;
     max-width: 65%;
     max-height: 650px;
@@ -21,12 +11,22 @@
     &::-webkit-scrollbar {
         width: 0;
     }
+
+    &__info {
+        display: flex;
+        background: var(--color-sea);
+        flex-grow: 1;
+    }
+
+    &__main {
+        flex: 0 0 70%;
+        max-width: 70%;
+        padding: 30px;
+        border-right: 1px solid #9f9ea7;
+    }
 }
 
-.list {
-    flex: 0 0 65%;
-    max-width: 35%;
-    padding-top: 25px;
-    max-height: 650px;
-    overflow-y: auto;
+.label {
+    color: rgba(159, 158, 167, 255);
+    margin-bottom: 22px;
 }

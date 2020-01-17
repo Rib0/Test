@@ -50,13 +50,7 @@ const Sidebar = () => {
                 <img className={styles.logo} src={Logo} />
             </Link>
             {items.map(item => (
-                <NavLink
-                    to={item.to}
-                    exact={item.exact}
-                    activeClassName={styles['item--active']}
-                    className={styles.item}
-                    key={item.to}
-                >
+                <NavLink to={item.to} exact={item.exact} activeClassName={styles['item--active']} className={styles.item} key={item.to}>
                     <img className={styles.item__img} src={item.img} />
                     <p>{item.name}</p>
                 </NavLink>

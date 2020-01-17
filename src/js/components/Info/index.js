@@ -6,16 +6,7 @@ import styles from './styles.css';
 
 const Info = props => {
     const { currentStatement } = props;
-    const {
-        statusName,
-        statusRgb,
-        initiatorName,
-        createdAt,
-        executorName,
-        priorityName,
-        resolutionDatePlan,
-        tags,
-    } = currentStatement;
+    const { statusName, statusRgb, initiatorName, createdAt, executorName, priorityName, resolutionDatePlan, tags } = currentStatement;
 
     return (
         <div className={styles.info}>
@@ -43,9 +34,7 @@ const Info = props => {
             </div>
             <div className={styles.info__item}>
                 <div className={styles.info__header}>Срок</div>
-                <div className={styles.info__value}>
-                    {new Date(resolutionDatePlan).toLocaleDateString()}
-                </div>
+                <div className={styles.info__value}>{new Date(resolutionDatePlan).toLocaleDateString()}</div>
             </div>
             {!!tags.length && (
                 <div className={styles.info__item}>

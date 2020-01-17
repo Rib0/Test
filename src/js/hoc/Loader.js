@@ -4,12 +4,10 @@ import Loader from 'components/Loader';
 import propTypes from 'prop-types';
 
 const hocLoader = Component => props => {
-    const { requiredOpts = [] } = props;
-    const isLoading =
-        requiredOpts.length &&
-        requiredOpts.some(arg => !arg || (Array.isArray(arg) && !arg.length));
+    const { requiredOpts = [], ...otherProps } = props;
+    const isLoading = requiredOpts.length && requiredOpts.some(arg => !arg || (Array.isArray(arg) && !arg.length));
 
-    return isLoading ? <Loader /> : <Component {...props} />;
+    return isLoading ? <Loader /> : <Component {...otherProps} />;
 };
 
 hocLoader.defaultProps = {

@@ -4,10 +4,8 @@ import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import Container from 'components/Container';
+import Layout from 'components/Layout';
 import Sidebar from 'components/Sidebar';
-import TaskList from 'components/TaskList';
-import Header from 'components/Header';
 
 import { getStatementsApi } from 'api';
 
@@ -21,20 +19,18 @@ class App extends Component {
 
     render() {
         return (
-            <Container>
-                <Sidebar />
-                <Container noflex>
-                    <Header />
-                    <Container main>
-                        <TaskList {...this.props} />
+            <Layout.Container>
+                <Layout.Row>
+                    <Sidebar />
+                    <Layout.Col width="auto" overflow="hidden">
                         <Switch>
                             {routes.map(({ path, component }) => (
                                 <Route path={path} component={component} key={path} />
                             ))}
                         </Switch>
-                    </Container>
-                </Container>
-            </Container>
+                    </Layout.Col>
+                </Layout.Row>
+            </Layout.Container>
         );
     }
 }
